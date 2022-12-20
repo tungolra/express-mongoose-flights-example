@@ -1,0 +1,14 @@
+<%- include('../partials/head.ejs') %> <%- include('../partials/header.ejs') %>
+<form
+  id="add-tix-to-flight"
+  action="/flights/<%=flight.id%>/tickets"
+  method="POST"
+>
+  <label>Seat:</label>
+  <input name="seat" required pattern="[A-F][1-9]\d?" required />
+  <label>Price:</label>
+  <input type="text" name="price" required />
+  <label>Flight:</label>
+
+  <input type="submit" value="Add Ticket" />
+</form>

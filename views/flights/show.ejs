@@ -1,0 +1,87 @@
+<head>
+  <%- include('../partials/head.ejs') %>
+</head>
+<%- include('../partials/header.ejs') %>
+<section id="show-page">
+  <div>Airline:</div>
+  <div><%= flight.airline%></div>
+  <div>Airport:</div>
+  <div><%= flight.airport%></div>
+  <div>Flight No.:</div>
+  <div><%= flight.flightNo%></div>
+  <div>Departs:</div>
+  <div><%= flight.departs%></div>
+</section>
+
+<% if (flight.destinations.length){%>
+<table>
+  <thead>
+    <tr>
+      <th>Airport</th>
+      <th>Arrival</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%flight.destinations.forEach(function(d){%>
+    <tr>
+      <td><%=d.airport%></td>
+      <td><%=d.arrival%></td>
+      <td>
+        <form
+          action="/flights/<%=flight.id%>/destinations/<%=d.id%>?_method=DELETE"
+          method="POST"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    <%});%>
+  </tbody>
+</table>
+<%} else {%>
+<h5>No Destinations Yet</h5>
+<%}%>
+<br /><br />
+<!-- start ticket list-->
+<div>Tickets:</div>
+<table>
+  <thead>
+    <tr>
+      <th>Seat</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tickets.forEach(t => { %>
+    <tr>
+      <td><%= t.seat %></td>
+      <td>$<%= t.price%></td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<!-- should map to populate tickets here -->
+
+<a href="/flights/<%=flight.id%>/tickets/new"
+  ><button type="submit">New Ticket</button></a
+>
+<!-- end ticket list-->
+<h3>Add Destination</h3>
+<form
+  id="add-destination-form"
+  action="/flights/<%=flight._id%>/destinations"
+  method="POST"
+>
+  <label>Airport</label>
+  <select name="airport">
+    <option value="AUS">AUS</option>
+    <option value="DFW">DFW</option>
+    <option value="DEN">DEN</option>
+    <option value="LAX">LAX</option>
+    <option value="SAN">SAN</option>
+  </select>
+  <br />
+  <label>Arrival <input type="datetime-local" name="arrival" required/></label>
+  <input type="submit" value="Add Destination" />
+</form>

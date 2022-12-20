@@ -1,0 +1,46 @@
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form * {
+  margin: 10px 10px;
+}
+thead,
+th,
+td {
+  border: 1px solid grey;
+  padding: 3px;
+}
+
+form {
+  border: 1px solid grey;
+}
+.dformbtn {
+  border: none
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.navbar > li {
+  list-style: none;
+  text-decoration: none;
+}
+
+a {
+  color: #00b7ff;
+}
+#show-page {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1rem;
+}

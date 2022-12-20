@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+    <title>Add New Flight</title>
+  </head>
+  <body>
+    <%- include('../partials/header.ejs');%>
+    <div class="container">
+      <h2>Enter a New Flight</h2>
+      <form action="/flights" method="POST">
+        <label
+          >Airline:
+          <select name="airline">
+            <option value="American">American</option>
+            <option value="Southwest">Southwest</option>
+            <option value="United">United</option>
+          </select> </label
+        ><br />
+        <label
+          >Airport:
+          <select name="airport">
+            <option value="AUS">AUS</option>
+            <option value="DFW">DFW</option>
+            <option value="DEN">DEN</option>
+            <option value="LAX">LAX</option>
+            <option value="SAN">SAN</option>
+          </select> </label
+        ><br />
+        <label>Flight No. <input type="text" name="flightNo" required /> </label><br />
+        <label>Departs: <input type="datetime-local" name="departs" value="<%=newDate%>"/> </label
+        ><br />
+        <input type="submit" value="Add Flight" />
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head.ejs') %>
+    <title>Add New Flight</title>
+  </head>
+  <body>
+    <%- include('../partials/header.ejs');%>
+    <div class="container">
+      <h1>Flight List</h1>
+
+      <table>
+        <thead>
+          <tr class="flight-list-headers">
+            <th>Airline</th>
+            <th>Airport</th>
+            <th>Flight No.</th>
+            <th>Departs</th>
+            <th>Flight Info</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%flights.forEach(function(f){%>
+          <tr>
+            <td><%=f.airline%></td>
+            <td><%=f.airport%></td>
+            <td><%=f.flightNo%></td>
+            <% let today = new Date().getTime()%> <% if (f.departs.getTime() <
+            today) {%>
+            <td style="color: red"><%=f.departs%></td>
+            <%} else {%>
+            <td style="color: black"><%=f.departs%></td>
+            <%}%>
+
+            <td><a href="/flights/<%=f._id%>">DETAILS</a></td>
+            <td>
+              <form action="/flights/<%=f.id%>?_method=DELETE" method="POST">
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <%});%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
